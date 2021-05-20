@@ -1,4 +1,4 @@
-# Delivery scanner - Go backend
+# Chatbot – Go back end
 
 ## Requirements
 

@@ -1,8 +1,13 @@
 # Chatbot with Algolia Answers
 
-This sample shows you how to leverage the Natural Language Processing features of [Algolia Answers](https://www.algolia.com/doc/guides/algolia-ai/answers/) by implement a chatbot connected to a knowledge base.
+This sample app implements a chatbot that answers your questions from a knowledge base. Leverage the natural language processing features of [Algolia Answers](https://www.algolia.com/doc/guides/algolia-ai/answers/) and the chatbot interface provided by [Google Cloud Dialogflow Messenger](https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger).
+
+The data included in this sample app is from the [World Health Organization's FAQ on Covid-19 vaccines](https://www.who.int/news-room/q-a-detail/coronavirus-disease-(covid-19)-vaccines).
 
 ## Features
+
+The sample app uses the following features:
+
 - 🧠 Natural Language Processing (NLP) using [Algolia Answers](https://www.algolia.com/doc/guides/algolia-ai/answers/).
 - 🤖 Chatbot building made easy with [Dialogflow](https://cloud.google.com/dialogflow/).
 
@@ -10,67 +15,77 @@ This sample shows you how to leverage the Natural Language Processing features o
 
 [Access the demo](https://ni17w.sse.codesandbox.io/)
 
+## How to run the sample app locally
 
-## How to run locally
+The sample app implements three servers in these programming languages:
 
-This sample includes 2 server implementations in [Python](server/python) and [JavaScript (Node)](server/node).
+- [Python](server/python)
+- [Node.js/JavaScript](server/node)
+- [Go](server/go)
 
-The [client](client) is a single HTML page displaying the [Dialogflow Messenger](https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger).
+The [client](client) is a single HTML page with the [Dialogflow Messenger](https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger).
 
-**1. Clone and configure the sample**
+### 1. Clone this repository
 
 ```
 git clone https://github.com/algolia-samples/chatbot-with-algolia-answers
 ```
+Copy the file `.env.example` to the directory of the server you want to use and rename it to `.env`. For example, to use the Python implementation:
 
-Copy the .env.example file into a file named .env in the folder of the server you want to use. For example:
-
+```bash
+cp .env.example server/python/.env
 ```
-cp .env.example server/go/.env
-```
 
-You will need an Algolia account in order to run the demo. If you don't have already an account, you can [create one for free](https://www.algolia.com/users/sign_up).
+### 2. Set up Algolia
+
+To use this sample app, you need an Algolia account. If you don't have one already, [create an account for free](https://www.algolia.com/users/sign-up). Note your [Application ID](https://deploy-preview-5789--algolia-docs.netlify.app/doc/guides/sending-and-managing-data/send-and-update-your-data/how-to/importing-with-the-api/#application-id).
+
+In the `.env` file, set the environment variables `ALGOLIA_APP_ID`:
 
 ```bash
 ALGOLIA_APP_ID=<replace-with-your-algolia-app-id>
 ```
 
-**2. Create and populate your Algolia index**
+### 3. Create your Algolia index and upload data
 
-Once your Algolia account and your Algolia application are setup, you will need to [create and populate an index](https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/).
+After you set up your Algolia account and Algolia application, [create and populate an index](https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/). Or, you can use the same data as the demo, [The World Health Organization COVID-19 FAQs](sample/who-covid-faq.json).
 
-Alternatively, you populate your index with the same data used in the demo, [The World Health Organization COVID-19 FAQs](sample/who-covid-faq.json).
+To upload your data, you can use the [Algolia dashboard](https://www.algolia.com/doc/guides/sending-and-managing-data/send-and-update-your-data/how-to/importing-from-the-dashboard/) or use on of Algolia's [API clients](https://www.algolia.com/developers/#integrations).
 
-You can either upload your data directly from the [Algolia dashboard](https://www.algolia.com/doc/guides/sending-and-managing-data/send-and-update-your-data/how-to/importing-from-the-dashboard/) or by using one of our [API clients](https://www.algolia.com/developers/#integrations).
+After creating the index and uploading the data, set the environment variable `ALGOLIA_INDEX_NAME` in the `.env` file:
 
 ```bash
 ALGOLIA_INDEX_NAME=<replace-with-your-algolia-index-name>
 ```
 
-**3. Algolia Answers**
+### 4. Set up Algolia Answers
 
-[Follow the instructions](https://www.algolia.com/doc/guides/algolia-ai/answers/#authentication) in order to setup Algolia Answers on your index.
+[Follow the instructions](https://www.algolia.com/doc/guides/algolia-ai/answers/#authentication) in Algolia's documentation to set up Algolia Answers for your index. After you added Algolia Answers to your account, set the environment variable `ALGOLIA_API_KEY` in the file `.env`.
 
 ```bash
 ALGOLIA_API_KEY=<replace-with-your-algolia-api-key-with-algolia-answers-acl>
 ```
 
-**4. Create and configure a Dialogflow agent**
+### 5. Create and configure a Dialogflow agent
 
 [Dialogflow](https://cloud.google.com/dialogflow) is a Google Cloud solution for building virtual agents.
-We will use it to quickly bootstrap our chatbot and use the [fulfillment](https://cloud.google.com/dialogflow/es/docs/fulfillment-overview) webhook feature to connect it to Algolia Answers.
+This sample app uses Google Cloud's [Dialogflow](https://cloud.google.com/dialogflow) to bootstrap the chatbot
+and the [fulfillment](https://cloud.google.com/dialogflow/es/docs/fulfillment-overview) webhook feature to connect it to Algolia Answers.
 
-1. Follow the Dialogflow guide to quickly create an empty agent.
-2. Replace the default fallback intent with [this one](sample/dialogflow-default-fallback-intent.json).
+1. [Follow the Dialogflow guide](https://cloud.google.com/dialogflow/es/docs/agents-manage) to create an empty agent.
+2. Replace the [default fallback intent](https://cloud.google.com/dialogflow/es/docs/intents-default#fallback) with [the file from the sample](sample/dialogflow-default-fallback-intent.json).
 3. Populate the `agent-id` variable in the [index file](client/index.html)
 
-**5. Follow the server instructions on how to run**
+### 6. Follow the instructions in the server directory 
 
-Pick the server language you want and follow the instructions in the server folder README on how to run.
+Each server directory has a file with instructions: 
 
-For example, if you want to run the Python server:
+- [Node.js](server/node/README)
+- [Python](server/python/README)
 
-```
+For example, to run the Python implementation of the server, follow these steps:
+
+```bash
 cd server/python # there's a README in this folder with instructions
 python3 venv env
 source env/bin/activate
@@ -79,10 +94,15 @@ export FLASK_APP=server.py
 python3 -m flask run --port=4242
 ```
 
-1. Expose your development server to the internet (by using [ngrok](https://ngrok.com/) or a similar solution).
-2. Add the development server public URL to the Dialogflow webhook setting so it can use it for the [fulfillment](https://cloud.google.com/dialogflow/es/docs/fulfillment-overview) of the queries).
+1. Expose your development server to the internet. For example, you can use [ngrok](https://ngrok.com/).
+2. [Add the public URL](https://cloud.google.com/dialogflow/es/docs/fulfillment-webhook) of the development server to the Dialogflow webhook so it can use it to answer the queries.
+3. Enter questions in the chatbot!
 
-All set up!
+## FAQ
+TODO
+
+## Get support
+TODO
 
 ## Authors
 - [@cdenoix](https://twitter.com/cdenoix)

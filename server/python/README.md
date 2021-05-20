@@ -1,15 +1,15 @@
-# Delivery scanner - Python backend
+# Chatbot: Python back end
 
 ## Requirements
 
-- Python 3.6+
+- Python, at least version 3.6
 - [Configured .env file](../../README.md)
 
 ## How to run
 
 1. Create and activate a new [virtual environment](https://docs.python.org/fr/3/library/venv.html).
 
-**MacOS / Unix**
+**MacOS/Unix**
 
 ```
 python3 -m venv env
