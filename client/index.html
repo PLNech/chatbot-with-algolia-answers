@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Chatbot with Algolia Answers sample</title>
+        <meta name="description" content="A demo of a chatbot built with Algolia Answers and Dialogflow." />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/index.css" />
+    </head>
+    <body>
+        <div class="banner">
+            <span>This is an
+                <a href="https://github.com/algolia-samples" target="_blank"> Algolia sample</a> 
+                showcasing a COVID-19 Vaccines chatbot using <a href="https://www.algolia.com/products/answers-for-publishers/" target="_blank">Algolia Answers</a> and <a href="https://cloud.google.com/dialogflow" target="_blank">Dialogflow</a>.
+                <br>
+                <a href="https://github.com/algolia-samples/delivery-scanner" target="_blank"> 
+                    View code on GitHub.
+                </a>
+            </span>
+        </div>
+        <df-messenger
+            intent="WELCOME"
+            chat-title="COVID vaccines FAQ"
+            agent-id="cf319d76-4a84-451f-accf-1951bbb7ca0d"
+            language-code="en"
+        ></df-messenger>
+    </body>
+</html>
