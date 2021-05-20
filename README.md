@@ -98,11 +98,5 @@ python3 -m flask run --port=4242
 2. [Add the public URL](https://cloud.google.com/dialogflow/es/docs/fulfillment-webhook) of the development server to the Dialogflow webhook so it can use it to answer the queries.
 3. Enter questions in the chatbot!
 
-## FAQ
-TODO
-
-## Get support
-TODO
-
 ## Authors
 - [@cdenoix](https://twitter.com/cdenoix)
