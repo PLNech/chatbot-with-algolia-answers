@@ -19,11 +19,10 @@ The sample app uses the following features:
 
 ## How to run the sample app locally
 
-The sample app implements three servers in these programming languages:
+The sample app implements two servers in these programming languages:
 
 - [Python](server/python)
 - [Node.js/JavaScript](server/node)
-- [Go](server/go)
 
 The [client](client) is a single HTML page with the [Dialogflow Messenger](https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger).
 
