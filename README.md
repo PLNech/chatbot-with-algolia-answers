@@ -13,7 +13,7 @@ The sample app uses the following features:
 
 ## Demo (Try it yourself!)
 
-<img src="demo/demo.gif?raw=true" alt="A short movie displaying the Algolia COVID-19 Vaccines chatbot" align="center" width="300">
+<img src="demo/demo.gif?raw=true" alt="A short movie displaying the Algolia COVID-19 Vaccines chatbot" align="center" width="400">
 
 [Access the demo](https://ni17w.sse.codesandbox.io/)
 
