@@ -60,10 +60,10 @@ app.post("/webhook", async (req, res) => {
                                     "type": "chips",
                                     "options": [
                                         {
-                                            "text": "Should I get vaccinated?"
+                                            "text": "Are the COVID-19 Vaccines safe?"
                                         },
                                         {
-                                            "text": "What are the different types of vaccines?"
+                                            "text": "Can my COVID-19 test come back positive if I get vaccinated?"
                                         }
                                     ]
                                 }
@@ -84,7 +84,10 @@ app.post("/webhook", async (req, res) => {
                                 {
                                     "type": "description",
                                     "text": [
-                                        `...${hit["_answer"]["extract"]}...`
+                                        `...${hit["_answer"]["extract"]}...`.replace(
+                                          new RegExp("<em>|</em>", "g"),
+                                          ""
+                                        )
                                     ]
                                 }
                             ]

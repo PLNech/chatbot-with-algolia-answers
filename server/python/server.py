@@ -47,7 +47,7 @@ def webhook():
     data = {
         "query": query_text,
         "queryLanguages": ["en"],
-        "attributesForPrediction": ["q", "a"],
+        "attributesForPrediction": ["a"],
         "nbHits": 1
     }
     results = requests.post(url, headers=headers, json=data).json()
@@ -63,9 +63,8 @@ def webhook():
                             [
                                 {
                                     "type": "description",
-                                    "title": hit['q'],
                                     "text": [
-                                        hit['a']
+                                        f'...{hit["_answer"]["extract"]}...'.replace('<em>', '').replace('</em>', '')
                                     ]
                                 }
                             ]
@@ -95,10 +94,10 @@ def webhook():
                                     "type": "chips",
                                     "options": [
                                         {
-                                            "text": "Should I get vaccinated?"
+                                            "text": "Are the COVID-19 Vaccines safe?"
                                         },
                                         {
-                                            "text": "What are the different types of vaccines?"
+                                            "text": "Can my COVID-19 test come back positive if I get vaccinated?"
                                         }
                                     ]
                                 }
