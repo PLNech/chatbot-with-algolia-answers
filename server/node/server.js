@@ -83,9 +83,8 @@ app.post("/webhook", async (req, res) => {
                             [
                                 {
                                     "type": "description",
-                                    "title": hit['q'],
                                     "text": [
-                                        hit['a']
+                                        `...${hit["_answer"]["extract"]}...`
                                     ]
                                 }
                             ]
