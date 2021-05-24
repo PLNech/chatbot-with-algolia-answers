@@ -1,15 +1,19 @@
-# Chatbot with Algolia Answers
+# Chatbot with Algolia Answers and Google Dialogflow Messenger
 
-This sample app implements a chatbot that answers your questions from a knowledge base. Leverage the natural language processing features of [Algolia Answers](https://www.algolia.com/doc/guides/algolia-ai/answers/) and the chatbot interface provided by [Google Cloud Dialogflow Messenger](https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger).
+This sample app implements a chatbot that answers your questions about Covid-19 vaccines. Chatbots allow you to ask questions using your normal language instead of using artificial search queries. With the help of natural language processing (NLP), chatbots extract the user's _intent_ from their question and offer best matching answers or trigger corresponding actions.
 
-The data included in this sample app is from the [World Health Organization's FAQ on Covid-19 vaccines](https://www.who.int/news-room/q-a-detail/coronavirus-disease-(covid-19)-vaccines).
+The sample app uses [Dialogflow Messenger](https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger), a visual interface to [Google Cloud Dialogflow](https://cloud.google.com/dialogflow/). Conventionally, you have to train Dialogflow by providing [training phrases and their variations](https://cloud.google.com/dialogflow/es/docs/tutorials/build-an-agent/create-customize-agent) together with matching responses. Here, the heavy lifting is performed by [Algolia Answers](https://www.algolia.com/products/answers-for-support/), Algolia's natural language understanding (NLU) API. Answers combines information from the search index, such as relevance, synonyms, or rules, and applies NLU of small snippets to rank which snippet best answers the question. You don't have to train anything!
+
+In this sample app, Algolia Answers handles all user intents (questions). You can also integrate Algolia Answers into existing chatbots by directing only a part of user intents to Algolia Answers while other intents are handled elsewhere. Instead of Dialog Messenger, you can also choose other chatbot interfaces, or implement your own.
+
+The data included in this sample app is from the [World Health Organization's FAQ on Covid-19 vaccines](<https://www.who.int/news-room/q-a-detail/coronavirus-disease-(covid-19)-vaccines>).
 
 ## Features
 
 The sample app uses the following features:
 
-- 🧠 Natural Language Processing (NLP) using [Algolia Answers](https://www.algolia.com/doc/guides/algolia-ai/answers/).
 - 🤖 Chatbot building made easy with [Dialogflow](https://cloud.google.com/dialogflow/).
+- 🧠 Natural Language Processing (NLP) using [Algolia Answers](https://www.algolia.com/doc/guides/algolia-ai/answers/).
 
 ## Demo (Try it yourself!)
 
@@ -31,6 +35,7 @@ The [client](client) is a single HTML page with the [Dialogflow Messenger](https
 ```
 git clone https://github.com/algolia-samples/chatbot-with-algolia-answers
 ```
+
 Copy the file `.env.example` to the directory of the server you want to use and rename it to `.env`. For example, to use the Python implementation:
 
 ```bash
@@ -77,9 +82,9 @@ and the [fulfillment](https://cloud.google.com/dialogflow/es/docs/fulfillment-ov
 2. Replace the [default fallback intent](https://cloud.google.com/dialogflow/es/docs/intents-default#fallback) with [the file from the sample](sample/dialogflow-default-fallback-intent.json).
 3. Populate the `agent-id` variable in the [index file](client/index.html)
 
-### 6. Follow the instructions in the server directory 
+### 6. Follow the instructions in the server directory
 
-Each server directory has a file with instructions: 
+Each server directory has a file with instructions:
 
 - [Node.js](server/node/README)
 - [Python](server/python/README)
@@ -100,4 +105,5 @@ python3 -m flask run --port=4242
 3. Enter questions in the chatbot!
 
 ## Authors
+
 - [@cdenoix](https://twitter.com/cdenoix)
