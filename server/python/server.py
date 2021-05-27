@@ -48,7 +48,8 @@ def webhook():
         "query": query_text,
         "queryLanguages": ["en"],
         "attributesForPrediction": ["a"],
-        "nbHits": 1
+        "nbHits": 1,
+        "threshold": 185 # https://www.algolia.com/doc/guides/algolia-ai/answers/#using-threshold-to-filter-results-based-on-confidence-scores
     }
     results = requests.post(url, headers=headers, json=data).json()
 
@@ -82,7 +83,8 @@ def webhook():
                     'text': {
                         'text': [
                             'Sorry, I do not have an answer to that!',
-                            'Here are some suggestion of questions:'
+                            'I can only answers COVID-19 Vaccines related questions',
+                            'Here are some suggestions:'
                         ]
                     }
                 },

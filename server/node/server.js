@@ -33,7 +33,8 @@ app.post("/webhook", async (req, res) => {
         "query": queryText,
         "queryLanguages": ["en"],
         "attributesForPrediction": ["q", "a"],
-        "nbHits": 1
+        "nbHits": 1,
+        "threshold": 185 // https://www.algolia.com/doc/guides/algolia-ai/answers/#using-threshold-to-filter-results-based-on-confidence-scores
     }
     const results = await fetch(url, {
         method: 'post',
@@ -48,7 +49,8 @@ app.post("/webhook", async (req, res) => {
                     'text': {
                         'text': [
                             'Sorry, I do not have an answer to that!',
-                            'Here are some suggestion of questions:'
+                            'I can only answers COVID-19 Vaccines related questions',
+                            'Here are some suggestions:'
                         ]
                     }
                 },
