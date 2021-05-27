@@ -10,9 +10,9 @@ The sample app uses the following features:
 
    The sample app uses [Dialogflow Messenger](https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger), a visual interface to Dialogflow. Conventionally, you have to train Dialogflow by providing [training phrases and their variations](https://cloud.google.com/dialogflow/es/docs/tutorials/build-an-agent/create-customize-agent) together with matching responses.
 
--  🧠 Natural Language Processing (NLP) using [Algolia Answers](https://www.algolia.com/products/answers-for-support/)
+-  🧠 Semantic understanding using [Algolia Answers](https://www.algolia.com/products/answers-for-support/)
 
-   In the sample app, the heavy lifting is performed by Algolia Answers, Algolia's NLP API. Answers [combines information from the search index](https://www.algolia.com/doc/guides/algolia-ai/answers/), such as relevance, synonyms, or rules, and applies NLP of small snippets to rank which snippet best answers the question. You don't have to train anything!
+   In the sample app, the heavy lifting is performed by Algolia Answers, Algolia's semantic search API. Answers [combines information from the search index](https://www.algolia.com/doc/guides/algolia-ai/answers/), such as relevance, synonyms, or rules, and applies semantic understanding of small snippets to rank which snippet best answers the question. You don't have to train anything!
 
    In this sample app, Algolia Answers handles all user intents (questions). You can also integrate Algolia Answers into existing chatbots by directing only a part of user intents to Algolia Answers while other intents are handled elsewhere. Instead of Dialog Messenger, you can also choose other chatbot interfaces, or implement your own.
    
