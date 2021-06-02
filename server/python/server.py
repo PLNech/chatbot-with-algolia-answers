@@ -87,7 +87,8 @@ def webhook():
                     'text': {
                         'text': [
                             'Sorry, I do not have an answer to that!',
-                            'Here are some suggestion of questions:'
+                            'I can only answer questions related to Covid-19 vaccines.',
+                            'Here are some suggestions:'
                         ]
                     }
                 },
