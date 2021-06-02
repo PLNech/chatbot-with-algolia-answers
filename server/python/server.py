@@ -47,13 +47,20 @@ def webhook():
     data = {
         "query": query_text,
         "queryLanguages": ["en"],
-        "attributesForPrediction": ["a"],
-        "nbHits": 1
+        "attributesForPrediction": ["q", "a"],
+        "nbHits": 1,
+        "threshold": 185 # https://www.algolia.com/doc/guides/algolia-ai/answers/#using-threshold-to-filter-results-based-on-confidence-scores
     }
     results = requests.post(url, headers=headers, json=data).json()
 
     try:
         hit = results['hits'][0]
+
+        if hit['_answer']['extractAttribute'] == 'a':
+            text_answer = f'{hit["_answer"]["extract"]}...'.replace('<em>', '').replace('</em>', '')
+        else:
+            text_answer = hit['a']
+
         # https://cloud.google.com/dialogflow/es/docs/fulfillment-webhook#webhook_response
         webhook_response = {
             'fulfillment_messages': [
@@ -63,9 +70,7 @@ def webhook():
                             [
                                 {
                                     "type": "description",
-                                    "text": [
-                                        f'...{hit["_answer"]["extract"]}...'.replace('<em>', '').replace('</em>', '')
-                                    ]
+                                    "text": [text_answer]
                                 }
                             ]
                         ]

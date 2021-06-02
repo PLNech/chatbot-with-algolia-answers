@@ -75,6 +75,15 @@ app.post("/webhook", async (req, res) => {
         })
     } else {
         const hit = results.hits[0];
+        let textAnswer;
+        if (hit["_answer"]["extractAttribute"] === "a") {
+            textAnswer = `...${hit["_answer"]["extract"]}...`.replace(
+                new RegExp("<em>|</em>", "g"),
+                ""
+            );
+        } else {
+            textAnswer = hit["a"];
+        }
         return res.send({
             'fulfillment_messages': [
                 {
@@ -83,12 +92,7 @@ app.post("/webhook", async (req, res) => {
                             [
                                 {
                                     "type": "description",
-                                    "text": [
-                                        `...${hit["_answer"]["extract"]}...`.replace(
-                                          new RegExp("<em>|</em>", "g"),
-                                          ""
-                                        )
-                                    ]
+                                    "text": [textAnswer]
                                 }
                             ]
                         ]
