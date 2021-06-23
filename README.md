@@ -2,6 +2,8 @@
 
 This sample app implements a chatbot that answers your questions about Covid-19 vaccines. Chatbots allow you to ask questions using your normal language instead of using artificial search queries. With the help of natural language processing (NLP), chatbots extract the user's _intent_ from their question and offer best matching answers or trigger corresponding actions.
 
+<img src="sample/diagram.png?raw=true" alt="A flowchart of the chatbot with Algolia Answers sample application" align="center">
+
 ## Features
 
 The sample app uses the following features:
