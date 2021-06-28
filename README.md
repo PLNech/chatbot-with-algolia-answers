@@ -1,6 +1,6 @@
 # Chatbot with Algolia Answers and Google Dialogflow Messenger
 
-This sample app implements a chatbot that answers your questions about Covid-19 vaccines. Chatbots allow you to ask questions using your normal language instead of using artificial search queries. With the help of natural language processing (NLP), chatbots extract the user's _intent_ from their question and offer best matching answers or trigger corresponding actions.
+This sample app implements a chatbot that answers your questions about Covid-19 vaccines. With chatbots, you can ask questions using your natural language instead of using artificial search queries. Algolia Answers extracts the users' _intent_ from their questions (semantic understanding) and offers best-matching answers without the need for extra training of the model.
 
 <img src="demo/diagram.png?raw=true" alt="A flowchart of the chatbot with Algolia Answers sample application" align="center">
 
@@ -8,17 +8,19 @@ This sample app implements a chatbot that answers your questions about Covid-19 
 
 The sample app uses the following features:
 
--  🤖 Chatbot building made easy with [Google Cloud Dialogflow](https://cloud.google.com/dialogflow/)
+- 🤖 Chatbot building made easy with [Google Cloud Dialogflow](https://cloud.google.com/dialogflow/)
 
-   The sample app uses [Dialogflow Messenger](https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger), a visual interface to Dialogflow. Conventionally, you have to train Dialogflow by providing [training phrases and their variations](https://cloud.google.com/dialogflow/es/docs/tutorials/build-an-agent/create-customize-agent) together with matching responses.
+  The sample app uses [Dialogflow Messenger](https://cloud.google.com/dialogflow/es/docs/integrations/dialogflow-messenger), a visual chatbot interface (**1**). A [webhook service](https://cloud.google.com/dialogflow/es/docs/fulfillment-webhook) sends the question to Algolia Answers, which handles all user intents (questions).
 
--  🧠 Semantic understanding using [Algolia Answers](https://www.algolia.com/products/answers-for-support/)
+- 🧠 Semantic understanding using [Algolia Answers](https://www.algolia.com/products/answers-for-support/)
 
-   In the sample app, the heavy lifting is performed by Algolia Answers, Algolia's semantic search API. Answers [combines information from the search index](https://www.algolia.com/doc/guides/algolia-ai/answers/), such as relevance, synonyms, or rules, and applies semantic understanding of small snippets to rank which snippet best answers the question. You don't have to train anything!
+  The heavy lifting is performed by Algolia Answers (**3**), Algolia's semantic search API. Answers [combines information from the search index](https://www.algolia.com/doc/guides/algolia-ai/answers/), such as relevance, synonyms, or rules, and applies semantic understanding of small snippets to rank which snippet best answers the question (**4**). You don't have to train anything!
 
-   In this sample app, Algolia Answers handles all user intents (questions). You can also integrate Algolia Answers into existing chatbots by directing only a part of user intents to Algolia Answers while other intents are handled elsewhere. Instead of Dialog Messenger, you can also choose other chatbot interfaces, or implement your own.
-   
--  📈 Data from the [World Health Organization's FAQ on Covid-19 vaccines](<https://www.who.int/news-room/q-a-detail/coronavirus-disease-(covid-19)-vaccines>)
+  Conventionally, you have to train Dialogflow by providing [training phrases and their variations](https://cloud.google.com/dialogflow/es/docs/tutorials/build-an-agent/create-customize-agent) together with matching responses.
+
+  You can also integrate Algolia Answers into existing chatbots by directing only a part of user intents to Algolia Answers while other intents are handled elsewhere. Instead of Dialog Messenger, you can also choose other chatbot interfaces, or implement your own.
+
+- 📈 Data from the [World Health Organization's FAQ on Covid-19 vaccines](<https://www.who.int/news-room/q-a-detail/coronavirus-disease-(covid-19)-vaccines>)
 
 ## Demo (Try it yourself!)
 
@@ -83,7 +85,7 @@ This sample app uses Google Cloud's [Dialogflow](https://cloud.google.com/dialog
 and the [fulfillment](https://cloud.google.com/dialogflow/es/docs/fulfillment-overview) webhook feature to connect it to Algolia Answers.
 
 1. [Follow the Dialogflow guide](https://cloud.google.com/dialogflow/es/docs/agents-manage) to create an empty agent.
-2. Replace the [default fallback intent](https://cloud.google.com/dialogflow/es/docs/intents-default#fallback) with [the file from the sample](sample/dialogflow-default-fallback-intent.json). The default fallback intent is the answer shown, when the agent couldn't find a matching response. 
+2. Replace the [default fallback intent](https://cloud.google.com/dialogflow/es/docs/intents-default#fallback) with [the file from the sample](sample/dialogflow-default-fallback-intent.json). The default fallback intent is the answer shown, when the agent couldn't find a matching response.
 3. Populate the `agent-id` variable in the [index file](client/index.html)
 
 ### 6. Follow the instructions in the server directory
